@@ -5,9 +5,6 @@ using System.Linq.Expressions;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using PlataformaDeEducacaoOnline.Core.Entities;
-
 namespace PlataformaDeEducacaoOnline.Alunos.Data.Context
 {
     public class AlunosContext(DbContextOptions<AlunosContext> options) : DbContext(options)
