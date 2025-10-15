@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlataformaDeEducacaoOnline.API", "src\PlataformaDeEducacaoOnline.API.csproj", "{F52A5152-8733-49DE-B01D-2CD539E46851}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{4454DAA5-7B4D-41AF-A1E1-F6916D608054}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alunos", "Alunos", "{3089D229-7886-42A7-88F7-4D4F00EAFAE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conteudos", "Conteudos", "{2071CCE6-C800-4D1D-9500-BCBD3759357B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Financeiro", "Financeiro", "{2F528B73-B9E3-4492-8359-FC593466ACA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlataformaDeEducacaoOnline.Alunos.Data", "PlataformaDeEducacaoOnline.Alunos.Data\PlataformaDeEducacaoOnline.Alunos.Data.csproj", "{B76D4039-61A8-4F31-BC5F-B89D562FBC70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlataformaDeEducacaoOnline.Core", "PlataformaDeEducacaoOnline.Core\PlataformaDeEducacaoOnline.Core.csproj", "{02B1BAA7-132F-4278-A833-580B11E59FC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlataformaDeEducacaoOnline.Alunos.Domain", "PlataformaDeEducacaoOnline.Alunos.Domain\PlataformaDeEducacaoOnline.Alunos.Domain.csproj", "{A68F2A25-1659-4E12-B45D-3D6C7F25821F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F52A5152-8733-49DE-B01D-2CD539E46851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52A5152-8733-49DE-B01D-2CD539E46851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52A5152-8733-49DE-B01D-2CD539E46851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52A5152-8733-49DE-B01D-2CD539E46851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76D4039-61A8-4F31-BC5F-B89D562FBC70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76D4039-61A8-4F31-BC5F-B89D562FBC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76D4039-61A8-4F31-BC5F-B89D562FBC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76D4039-61A8-4F31-BC5F-B89D562FBC70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02B1BAA7-132F-4278-A833-580B11E59FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B1BAA7-132F-4278-A833-580B11E59FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B1BAA7-132F-4278-A833-580B11E59FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B1BAA7-132F-4278-A833-580B11E59FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A68F2A25-1659-4E12-B45D-3D6C7F25821F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A68F2A25-1659-4E12-B45D-3D6C7F25821F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A68F2A25-1659-4E12-B45D-3D6C7F25821F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A68F2A25-1659-4E12-B45D-3D6C7F25821F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F52A5152-8733-49DE-B01D-2CD539E46851} = {4454DAA5-7B4D-41AF-A1E1-F6916D608054}
+		{B76D4039-61A8-4F31-BC5F-B89D562FBC70} = {3089D229-7886-42A7-88F7-4D4F00EAFAE7}
+		{02B1BAA7-132F-4278-A833-580B11E59FC1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A68F2A25-1659-4E12-B45D-3D6C7F25821F} = {3089D229-7886-42A7-88F7-4D4F00EAFAE7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A022A3ED-7B12-4A9C-AA5D-35D981A4CFA8}
+	EndGlobalSection
+EndGlobal
