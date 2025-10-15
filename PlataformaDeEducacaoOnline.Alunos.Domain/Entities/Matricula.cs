@@ -25,55 +25,6 @@ namespace PlataformaDeEducacaoOnline.Alunos.Domain.Entities
         {
             AlunoId = alunoId;
             CursoId = cursoId;
-            Validar();
-            Iniciar(status);
-        }
-
-        public void Iniciar(StatusMatricula status)
-        {
-            if (status?.Codigo != (int)EStatusMatricula.Iniciada)
-                throw new DomainException("A matrícula deve estar com o status 'Iniciada'.");
-
-            AssociarStatus(status);
-        }
-
-        public void Ativar(StatusMatricula status)
-        {
-            if (status?.Codigo != (int)EStatusMatricula.Ativa)
-                throw new DomainException("A matrícula deve estar com o status 'Ativa'.");
-
-            AssociarStatus(status);
-            DataMatricula = DateTime.Now;
-        }
-        public void Concluir(StatusMatricula status)
-        {
-            if (status?.Codigo != (int)EStatusMatricula.Concluida)
-                throw new DomainException("A matrícula deve estar com o status 'Concluída'.");
-
-            AssociarStatus(status);
-            DataConclusao = DateTime.Now;
-        }
-        public void AguardandoPagamento(StatusMatricula status)
-        {
-            if (status?.Codigo != (int)EStatusMatricula.AguardandoPagamento)
-                throw new DomainException("A matrícula deve estar com o status 'Aguardando Pagamento'.");
-
-            AssociarStatus(status);
-        }
-
-        private void AssociarStatus(StatusMatricula status)
-        {
-            if (status == null)
-                throw new DomainException("O status da matrícula não pode ser nulo.");
-            Status = status;
-        }
-
-        private void Validar()
-        {
-            if (AlunoId == Guid.Empty)
-                throw new DomainException("O campo AlunoId é obrigatório.");
-            if (CursoId == Guid.Empty)
-                throw new DomainException("O campo CursoId é obrigatório.");
         }
 
     }

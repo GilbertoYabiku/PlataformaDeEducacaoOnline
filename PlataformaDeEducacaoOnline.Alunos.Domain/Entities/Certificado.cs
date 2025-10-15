@@ -39,7 +39,7 @@ namespace PlataformaDeEducacaoOnline.Alunos.Domain.Entities
         public void AdicionarArquivo(byte[] arquivoPdf)
         {
             if (arquivoPdf == null || arquivoPdf.Length == 0)
-                throw new DomainException("Arquivo do certificado inválido.");
+                throw new Exception("Arquivo do certificado inválido.");
 
             Arquivo = arquivoPdf;
         }
@@ -47,17 +47,17 @@ namespace PlataformaDeEducacaoOnline.Alunos.Domain.Entities
         public void Validar()
         {
             if (AlunoId == Guid.Empty)
-                throw new DomainException("O campo AlunoId é obrigatório.");
+                throw new Exception("O campo AlunoId é obrigatório.");
             if (MatriculaId == Guid.Empty)
-                throw new DomainException("O campo MatriculaId é obrigatório.");
+                throw new Exception("O campo MatriculaId é obrigatório.");
             if (string.IsNullOrWhiteSpace(Descricao))
-                throw new DomainException("O campo Descrição é obrigatório.");
+                throw new Exception("O campo Descrição é obrigatório.");
             if (string.IsNullOrWhiteSpace(NomeAluno))
-                throw new DomainException("O campo Nome Aluno é obrigatório.");
+                throw new Exception("O campo Nome Aluno é obrigatório.");
             if (string.IsNullOrWhiteSpace(NomeCurso))
-                throw new DomainException("O campo Nome Curso é obrigatório.");
+                throw new Exception("O campo Nome Curso é obrigatório.");
             if (!DataConclusao.HasValue)
-                throw new DomainException("O campo Data Conclusão é obrigatório.");
+                throw new Exception("O campo Data Conclusão é obrigatório.");
         }
     }
 }

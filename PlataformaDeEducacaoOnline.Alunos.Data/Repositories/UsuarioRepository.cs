@@ -9,7 +9,7 @@ using PlataformaDeEducacaoOnline.Alunos.Domain.Entities;
 
 namespace PlataformaDeEducacaoOnline.Alunos.Data.Repositories
 {
-    public class UsuarioRepository(AlunosContext dbContext) : IUsuarioRepository
+    public class UsuarioRepository(AlunosContext dbContext) 
     {
         private readonly DbSet<Usuario> _dbSet = dbContext.Set<Usuario>();
         public void Adicionar(Usuario usuario)
