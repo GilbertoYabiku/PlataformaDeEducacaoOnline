@@ -1,0 +1,10 @@
+﻿namespace PlataformaDeEducacaoOnline.API.Entities
+{
+    public class Aula
+    {
+        public string Nome { get; set; }
+        public string Conteudo { get; set; }
+        public string NomeMaterial { get; set; }
+        public string TipoMaterial { get; set; }
+    }
+}

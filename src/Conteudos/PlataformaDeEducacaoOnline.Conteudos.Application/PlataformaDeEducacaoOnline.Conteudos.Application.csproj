@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PlataformaDeEducacaoOnline.Core\PlataformaDeEducacaoOnline.Core.csproj" />
+    <ProjectReference Include="..\PlataformaDeEducacaoOnline.Conteudos.Data\PlataformaDeEducacaoOnline.Conteudos.Data.csproj" />
+  </ItemGroup>
+
+</Project>

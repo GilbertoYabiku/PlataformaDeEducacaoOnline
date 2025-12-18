@@ -1,0 +1,125 @@
+﻿using PlataformaDeEducacaoOnline.Alunos.Domain.Entities;
+using PlataformaDeEducacaoOnline.Core.Entities;
+
+namespace PlataformaDeEducacaoOnline.Tests.Alunos.Application;
+
+public class AlunoTests
+{
+    [Fact(DisplayName = "Aluno - Adicionar Matricula")]
+    [Trait("Categoria", "GestaoAlunos - AdicionarMatricula")]
+    public void AdicionarMatricula_NovaMatricula_StatusAguardandoPagamento()
+    {
+        // Arrange
+        var aluno = new Aluno(Guid.NewGuid(), "teste");
+        var cursoId = Guid.NewGuid();
+        var statusAguardando = new StatusMatricula
+        {
+            Codigo = (int)EnumMatricula.AguardandoPagamento,
+        };
+        var statusIniciada = new StatusMatricula
+        {
+            Codigo = (int)EnumMatricula.Iniciada,
+        };
+        var matricula = new Matricula(aluno.Id, cursoId, statusIniciada);
+
+        matricula.AguardandoPagamento(statusAguardando);
+        // Act
+        aluno.AdicionarMatricula(matricula);
+
+        // Assert
+        Assert.Equal(1, aluno.Matriculas.Count);
+        Assert.Equal((int)EnumMatricula.AguardandoPagamento, matricula.Status.Codigo);
+    }
+    [Fact(DisplayName = "Aluno - Adicionar Matricula Existente")]
+    [Trait("Categoria", "GestaoAlunos - AdicionarMatricula")]
+    public void AdicionarMatricula_ExistenteMatricula_DeveLancarException()
+    {
+        // Arrange
+        var aluno = new Aluno(Guid.NewGuid(), "teste");
+        var cursoId = Guid.NewGuid();
+        var statusIniciada = new StatusMatricula
+        {
+            Codigo = (int)EnumMatricula.Iniciada,
+        };
+
+        var matricula = new Matricula(aluno.Id, cursoId, statusIniciada);
+
+        // Act
+        aluno.AdicionarMatricula(matricula);
+
+        // Assert
+        Assert.Throws<DomainException>(() => aluno.AdicionarMatricula(matricula));
+        Assert.Equal(1, aluno.Matriculas.Count);
+    }
+
+    [Fact(DisplayName = "Aluno - Adicionar Certificado")]
+    [Trait("Categoria", "GestaoAlunos - AdicionarCertificado")]
+    public void AdicionarCertificado_NovoCertificado_DeveAdicionarComSucesso()
+    {
+        // Arrange
+        var aluno = new Aluno(Guid.NewGuid(), "teste");
+        var curso = "Curso teste";
+        var certificado = new Certificado(aluno.Nome, curso, Guid.NewGuid(), aluno.Id, DateTime.Now);
+
+        // Act
+        aluno.AdicionarCertificado(certificado);
+
+        // Assert
+        Assert.Equal(1, aluno.Certificados.Count);
+    }
+
+    [Fact(DisplayName = "Aluno - Gerar Descrição Certificado")]
+    [Trait("Categoria", "GestaoAlunos - GerarDescricao")]
+    public void GerarDescricao_DadosValidos_DeveGerarDescricao()
+    {
+        // Arrange
+        var aluno = new Aluno(Guid.NewGuid(), "teste");
+        var curso = "Curso teste";
+        var certificado = new Certificado(aluno.Nome, curso, Guid.NewGuid(), aluno.Id, DateTime.Now);
+
+        // Act
+        aluno.AdicionarCertificado(certificado);
+
+        // Assert
+        Assert.Contains(aluno.Nome, certificado.Descricao);
+        Assert.Contains(curso, certificado.Descricao);
+    }
+
+    [Fact(DisplayName = "Aluno - Adicionar Certificado Invalido")]
+    [Trait("Categoria", "GestaoAlunos - AdicionarCertificado")]
+    public void AdicionarCertificado_DadosInvalidos_DeveLancarException()
+    {
+        // Arrange && Act && Assert
+        Assert.Throws<DomainException>(() => new Certificado("", "", Guid.Empty, Guid.Empty, DateTime.Now));
+    }
+
+    [Fact(DisplayName = "Aluno - Adicionar Certificado Existente")]
+    [Trait("Categoria", "GestaoAlunos - AdicionarCertificado")]
+    public void AdicionarCertificado_CertificadoExistente_DeveLancarException()
+    {
+        // Arrange
+        var aluno = new Aluno(Guid.NewGuid(), "teste");
+        var curso = "Curso teste";
+        var certificado = new Certificado(aluno.Nome, curso, Guid.NewGuid(), aluno.Id, DateTime.Now);
+
+        // Act
+        aluno.AdicionarCertificado(certificado);
+
+        // Assert
+        Assert.Throws<DomainException>(() => aluno.AdicionarCertificado(certificado));
+        Assert.Equal(1, aluno.Certificados.Count);
+    }
+
+    [Fact(DisplayName = "Aluno - Adicionar Certificado Sem Arquivo")]
+    [Trait("Categoria", "GestaoAlunos - AdicionarCertificado")]
+    public void AdicionarCertificado_SemArquivo_DeveLancarException()
+    {
+        // Arrange
+        var aluno = new Aluno(Guid.NewGuid(), "teste");
+        var curso = "Curso teste";
+        var certificado = new Certificado(aluno.Nome, curso, Guid.NewGuid(), aluno.Id, DateTime.Now);
+
+        // Act && Assert
+        Assert.Throws<DomainException>(() => certificado.AdicionarArquivo(null));
+    }
+}
