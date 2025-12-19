@@ -50,7 +50,7 @@ namespace PlataformaDeEducacaoOnline.Alunos.Application.Services
 
             return new CertificadoViewModel
             {
-                Arquivo = certificado?.Arquivo ?? []
+                Arquivo = certificado?.Arquivo ?? null
             };
         }
     }

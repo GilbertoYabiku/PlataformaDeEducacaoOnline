@@ -55,20 +55,20 @@ namespace PlataformaDeEducacaoOnline.Alunos.Data.Context
                 {
                     entityEntry.Property("DataCriacao").CurrentValue = DateTime.Now;
                     entityEntry.Property("DataAlteracao").IsModified = false;
-                    entityEntry.Property("DataDelecao").IsModified = false;
+                    entityEntry.Property("DataExclusao").IsModified = false;
                 }
                 if (entityEntry.State == EntityState.Modified)
                 {
                     entityEntry.Property("DataAlteracao").CurrentValue = DateTime.Now;
                     entityEntry.Property("DataCriacao").IsModified = false;
-                    entityEntry.Property("DataDelecao").IsModified = false;
+                    entityEntry.Property("DataExclusao").IsModified = false;
                 }
                 if (entityEntry.State == EntityState.Deleted)
                 {
                     entityEntry.State = EntityState.Modified;
                     entityEntry.Property("DataExclusao").CurrentValue = DateTime.Now;
                     entityEntry.Property("DataCriacao").IsModified = false;
-                    entityEntry.Property("DataDelecao").IsModified = false;
+                    entityEntry.Property("DataExclusao").IsModified = false;
                 }
             }
             return base.SaveChangesAsync(cancellationToken);

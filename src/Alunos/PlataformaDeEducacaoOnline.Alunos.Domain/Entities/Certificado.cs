@@ -9,15 +9,11 @@ namespace PlataformaDeEducacaoOnline.Alunos.Domain.Entities
         public DateTime DataEmissao { get; private set; }
         public DateTime? DataConclusao { get; private set; }
         public string Descricao { get; private set; }
-        public byte[] Arquivo { get; private set; }
+        public string Arquivo { get; private set; }
         public Guid AlunoId { get; private set; }
         public Guid MatriculaId { get; private set; }
-
-        // EF Relations
         public Aluno Aluno { get; set; }
         public Matricula Matricula { get; set; }
-
-        // Ef Constructor
         protected Certificado() { }
         public Certificado(string nomeAluno, string nomeCurso, Guid matriculaId, Guid alunoId, DateTime? dataConclusao)
         {
@@ -36,12 +32,12 @@ namespace PlataformaDeEducacaoOnline.Alunos.Domain.Entities
             Descricao = $"Certificamos que o(a) aluno(a) {NomeAluno} concluiu o curso {NomeCurso} com sucesso no dia {DataConclusao:dd/MM/yyyy}.";
         }
 
-        public void AdicionarArquivo(byte[] arquivoPdf)
+        public void AdicionarArquivo(string arquivo)
         {
-            if (arquivoPdf == null || arquivoPdf.Length == 0)
+            if (arquivo == null || arquivo.Length == 0)
                 throw new Exception("Arquivo do certificado inválido.");
 
-            Arquivo = arquivoPdf;
+            Arquivo = arquivo;
         }
 
         public void Validar()

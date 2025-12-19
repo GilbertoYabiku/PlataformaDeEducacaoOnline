@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using PlataformaDeEducacaoOnline.Alunos.Data.Context;
 using PlataformaDeEducacaoOnline.Alunos.Domain.Entities;
 using PlataformaDeEducacaoOnline.API.Data;
-using PlataformaDeEducacaoOnline.API.Entities;
 using PlataformaDeEducacaoOnline.Conteudos.Data.Context;
 using PlataformaDeEducacaoOnline.Conteudos.Domain.Entities;
 using PlataformaDeEducacaoOnline.Core.Entities;
@@ -34,7 +33,7 @@ public static class DbMigrationHelpers
         var contextFinanceiro = scope.ServiceProvider.GetRequiredService<FinanceiroContext>();
         var env = scope.ServiceProvider.GetRequiredService<IHostEnvironment>();
 
-        if (env.IsDevelopment() || env.IsEnvironment("Testing"))
+        if (env.IsDevelopment())
         {   
             await contextAlunos.Database.EnsureDeletedAsync();
             await contextConteudos.Database.EnsureDeletedAsync();
@@ -112,11 +111,10 @@ public static class DbMigrationHelpers
         var userAdmin = await dbApplicationContext.Users.FirstOrDefaultAsync(x => x.Email == "admin@teste.com");
 
         var admin = new Usuario(Guid.Parse(userAdmin.Id));
-        var aluno = new Aluno(Guid.Parse(user.Id), "fulano");
-        var aluno2 = new Aluno(Guid.Parse(user2.Id), "fulano2");
+        var aluno = new Aluno(Guid.Parse(user.Id), "teste1");
+        var aluno2 = new Aluno(Guid.Parse(user2.Id), "teste2");
 
-        // CURSO 1 - C#
-        var curso = new Conteudos.Domain.Entities.Curso("Curso C#", "Teste", admin.Id, 250);
+        var curso = new Conteudos.Domain.Entities.Curso("Curso 1", "Teste", admin.Id, 250);
         var aula = new Conteudos.Domain.Entities.Aula("Aula 1", "Teste");
         var aula2 = new Conteudos.Domain.Entities.Aula("Aula 2", "Teste");
         var aula3 = new Conteudos.Domain.Entities.Aula("Aula 3", "Teste");
@@ -124,8 +122,7 @@ public static class DbMigrationHelpers
         curso.AdicionarAula(aula2);
         curso.AdicionarAula(aula3);
 
-        // CURSO 2 - Angular 
-        var curso2 = new Conteudos.Domain.Entities.Curso("Angular", "Teste", admin.Id, 150);
+        var curso2 = new Conteudos.Domain.Entities.Curso("Curso 2", "Teste", admin.Id, 150);
         var aula4 = new Conteudos.Domain.Entities.Aula("Aula 1", "Teste");
         var aula5 = new Conteudos.Domain.Entities.Aula("Aula 2", "Teste");
         var aula6 = new Conteudos.Domain.Entities.Aula("Aula 3", "Teste");
@@ -133,7 +130,6 @@ public static class DbMigrationHelpers
         curso2.AdicionarAula(aula5);
         curso2.AdicionarAula(aula6);
 
-        // StatusMatricula
         var statusIniciada = new StatusMatricula
         {
             Codigo = (int)EnumMatricula.Iniciada,
@@ -161,7 +157,6 @@ public static class DbMigrationHelpers
             Descricao = "Cancelada"
         };
 
-        // Matriculas
         var matriculaAtiva = new Alunos.Domain.Entities.Matricula(aluno2.Id, curso.Id, statusIniciada);
         matriculaAtiva.Ativar(statusAtiva);
 
@@ -171,7 +166,6 @@ public static class DbMigrationHelpers
         var matriculaConcluida = new Alunos.Domain.Entities.Matricula(aluno.Id, curso2.Id, statusIniciada);
         matriculaConcluida.Concluir(statusConcluida);
 
-        // Progresso das aulas para a matrícula concluída
         var progressoAula1 = new ProgressoAula(aluno.Id, aula4.Id);
         progressoAula1.ConcluirAula();
         var progressoAula2 = new ProgressoAula(aluno.Id, aula5.Id);
@@ -179,28 +173,25 @@ public static class DbMigrationHelpers
         var progressoAula3 = new ProgressoAula(aluno.Id, aula6.Id);
         progressoAula3.ConcluirAula();
 
-        // Progresso das aulas para a matrícula ativa
         var progressoAulaAtiva1 = new ProgressoAula(aluno2.Id, aula.Id);
         progressoAulaAtiva1.EmAndamento();
 
-        // Progresso do curso concluído
         var progressoCursoConcluido = new ProgressoCurso(curso2.Id, aluno.Id, curso2.Aulas.Count);
-        progressoCursoConcluido.IncrementarProgresso(); // aula4
-        progressoCursoConcluido.IncrementarProgresso(); // aula5
-        progressoCursoConcluido.IncrementarProgresso(); // aula6
+        progressoCursoConcluido.IncrementarProgresso();
+        progressoCursoConcluido.IncrementarProgresso();
+        progressoCursoConcluido.IncrementarProgresso();
 
-        // Certificado para o aluno
         var certificado = new Certificado(aluno.Nome, curso2.Nome, matriculaConcluida.Id, aluno.Id, matriculaConcluida.DataConclusao);
+        certificado.AdicionarArquivo("Teste");
 
-        // Pagamento
         var pagamento = new Pagamento
         {
             AlunoId = aluno2.Id,
             CursoId = curso.Id,
             NomeCartao = "Nome do Cartão",
-            NumeroCartao = "5502093788528294",
-            ExpiracaoCartao = "12/25",
-            CvvCartao = "455",
+            NumeroCartao = "123",
+            ExpiracaoCartao = "20/30",
+            CvvCartao = "123",
             Valor = curso.Preco,
         };
         var transacao = new Transacao

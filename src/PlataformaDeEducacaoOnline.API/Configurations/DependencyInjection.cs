@@ -26,35 +26,29 @@ public static class DependencyInjection
 {
     public static WebApplicationBuilder RegisterServices(this WebApplicationBuilder builder)
     {
-        // Notifications
         builder.Services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
-        // Gestão de Alunos
         builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
         builder.Services.AddScoped<IStatusMatriculaRepository, StatusMatriculaRepository>();
         builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         builder.Services.AddScoped<IAlunoService, AlunoService>();
         builder.Services.AddScoped<AlunosContext>();
 
-        // Gestão de Conteúdos
         builder.Services.AddScoped<ICursoRepository, CursoRepository>();
         builder.Services.AddScoped<ICursoService, CursoService>();
         builder.Services.AddScoped<IAulaRepository, AulaRepository>();
         builder.Services.AddScoped<ConteudosContext>();
 
-        // Mediator
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AdicionarAlunoCommand>());
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AdicionarAulaCommand>());
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<PagamentoService>());
+        builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblyContaining<AdicionarAlunoCommand>());
+        builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblyContaining<AdicionarAulaCommand>());
+        builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblyContaining<PagamentoService>());
 
-        // Pagamentos
         builder.Services.AddScoped<IPagamentoRepository, PagamentoRepository>();
         builder.Services.AddScoped<IPagamentoService, PagamentoService>();
         builder.Services.AddScoped<IPagamentoCartaoCreditoFacade, PagamentoCartaoCreditoFacade>();
         builder.Services.AddScoped<ICartaoGateway, CartaoGateway>();
         builder.Services.AddScoped<FinanceiroContext>();
 
-        //Identity User
         builder.Services.AddScoped<IAppIdentityUser, AppIdentityUser>();
 
         return builder;

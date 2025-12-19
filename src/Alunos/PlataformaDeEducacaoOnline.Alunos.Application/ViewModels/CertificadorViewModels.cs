@@ -8,6 +8,6 @@ namespace PlataformaDeEducacaoOnline.Alunos.Application.ViewModels
 {
     public class CertificadoViewModel
     {
-        public byte[] Arquivo { get; set; }
+        public string Arquivo { get; set; }
     }
 }
